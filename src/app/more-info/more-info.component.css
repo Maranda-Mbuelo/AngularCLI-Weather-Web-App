@@ -1,0 +1,20 @@
+/* .container {
+    padding: 2rem;
+  }
+  
+  .text-2xl {
+    @apply text-3xl font-bold mb-4;
+  }
+  
+  .info-card {
+    @apply flex items-center justify-between border-b-2 pb-2;
+  }
+  
+  .info-card__title {
+    @apply text-lg font-semibold text-indigo-500;
+  }
+  
+  .info-card__value {
+    @apply text-lg;
+  }
+   */

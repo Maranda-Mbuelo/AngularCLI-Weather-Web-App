@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container p-4">
     <section class="searchbar">
-        <app-searchbar></app-searchbar>
+        <app-searchbar (newItemEvent)="handleWeatherData($event)"></app-searchbar>
     </section>
     <section class="weather">
-        <app-weather-info></app-weather-info>
+        <app-weather-info [root]="weatherInformation"></app-weather-info>
     </section>
-    <section class="information">
+    <section class="myInformation">
         <app-more-info></app-more-info>
     </section>
-</div>
+</div> 
   

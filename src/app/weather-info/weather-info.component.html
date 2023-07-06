@@ -1,15 +1,16 @@
-<div class="information  max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-    <div class="md:flex">
-      <div class="md:shrink-0">
-        <img class="h-48 w-full object-cover md:h-full md:w-48" [src]="sunnyPic" alt="Modern building architecture">
-      </div>
-      <div class="p-8">
-        <div class="text-4xl font-bold mb-4">25°C</div>
-        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Company retreats</div>
-        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">Incredible accommodation for your team</a>
-        <p class="mt-2 text-slate-500">Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of places to do just that.</p>
-        <button (click)="toggleIsAllowed()" class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">Show More</button>
-      </div>
+<div class="information  max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-1.8xl">
+  <div class="md:flex">
+    <div class="md:shrink-0">
+      <img class="h-48 w-full object-cover md:h-full md:w-48" [src]="getWeatherImage()" alt="Modern building architecture">
+    </div>
+    <div class="p-8">
+      <div class="text-4xl font-bold mb-4">{{ root.main.temp }}&deg;C</div>
+      <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Weather for: {{ root.name | lowercase }}</div>
+      <ng-container *ngFor="let weatherItem of weather">
+        <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">{{ weatherItem.description }}</a>
+      </ng-container>
+      <p class="mt-2 text-slate-500">Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of places to do just that.</p>
+      <button (click)="toggleIsAllowed()" class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">Show More</button>
     </div>
   </div>
-  
+</div>

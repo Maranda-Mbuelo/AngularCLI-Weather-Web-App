@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Root } from '../interfaces/weatherInterface';
 
 
 @Injectable({
@@ -14,10 +15,10 @@ export class WeatherService {
 
   constructor(private http: HttpClient) { }
 
-  getWeatherData(cityName: string) {
+  getWeatherData(cityName: string): Observable<Root> {
     const params = new HttpParams().set('q', cityName).set('appid', this.API_KEY);
   
-    return this.http.get(`${this.API_URL}weather`, { params });
+    return this.http.get<Root>(`${this.API_URL}weather`, { params });
   }
   
 }

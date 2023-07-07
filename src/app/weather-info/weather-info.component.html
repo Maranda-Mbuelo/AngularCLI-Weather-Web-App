@@ -1,7 +1,25 @@
-<div class="information  max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-1.8xl">
+<div class="information max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-1.8xl">
   <div class="md:flex">
-    <div class="md:shrink-0">
+    <div class="md:shrink-0 relative">
       <img class="h-48 w-full object-cover md:h-full md:w-48" [src]="getWeatherImage()" alt="Modern building architecture">
+      <div class="absolute bottom-2 left-2">
+        <ng-container *ngIf="isRaining">
+          <i class="fas fa-cloud-rain text-gray-500 text-2xl"></i>
+        </ng-container>
+        <ng-container *ngIf="isSunny">
+          <i class="fas fa-sun text-yellow-500 text-2xl ml-2"></i>
+        </ng-container>
+        <ng-container *ngIf="isCold">
+          <i class="fa-solid fa-cloud-sun-rain text-gray-500 text-2xl"></i>
+        </ng-container>
+        <ng-container *ngIf="isRaining">
+          <i class="fas fa-bolt text-yellow-500 text-2xl"></i>
+        </ng-container>
+        <ng-container *ngIf="isRaining">
+          <i class="fas fa-snowflake text-blue-500 text-2xl"></i>
+        </ng-container>
+
+      </div>
     </div>
     <div class="p-8">
       <div class="text-4xl font-bold mb-4">{{ root.main.temp }}&deg;C</div>
@@ -9,8 +27,10 @@
       <ng-container *ngFor="let weatherItem of weather">
         <a href="#" class="block mt-1 text-lg leading-tight font-medium text-black hover:underline">{{ weatherItem.description }}</a>
       </ng-container>
-      <p class="mt-2 text-slate-500">Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of places to do just that.</p>
-      <button (click)="toggleIsAllowed()" class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">Show More</button>
+      <p class="mt-2 text-slate-500">{{paragraph}}</p>
+      <!-- <button (click)="toggleIsAllowed()" class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">Show More</button> -->
+      <button [routerLink]="'/more-info/' + root.name" class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700">Show More</button>
     </div>
   </div>
 </div>
+

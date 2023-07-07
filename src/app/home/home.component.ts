@@ -33,7 +33,11 @@ export class HomeComponent implements OnInit {
     id: 0,
     name: '',
     cod: 0
-  };
+};
+  // Component code
+  isInfoHidden: boolean = true;
+  isInfoShown: boolean = false;
+
 
   constructor(private weatherService: WeatherService) { }
 
@@ -58,13 +62,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  toggleInfo(): void {
+    this.isInfoHidden = !this.isInfoHidden;
+    this.isInfoShown = !this.isInfoShown;
+  }
+
   fetchData(cityName: string): void {
     this.weatherService.getWeatherData(cityName).subscribe(
       response => {
         // console.log(response);
         this.weatherInformation = response;
         this.weatherInformation.main.temp = parseInt((this.weatherInformation.main.temp - 273.15).toFixed(0), 10);
-        console.log(this.weatherInformation)
       },
       error => {
         console.error(error);

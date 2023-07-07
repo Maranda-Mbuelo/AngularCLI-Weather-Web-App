@@ -1,12 +1,44 @@
 <div class="container p-4">
-    <section class="searchbar">
-        <app-searchbar (newItemEvent)="handleWeatherData($event)"></app-searchbar>
-    </section>
-    <section class="weather">
-        <app-weather-info [root]="weatherInformation"></app-weather-info>
-    </section>
-    <section class="myInformation">
-        <app-more-info></app-more-info>
-    </section>
-</div> 
-  
+  <section class="searchbar">
+    <app-searchbar (newItemEvent)="handleWeatherData($event)"></app-searchbar>
+  </section>
+  <section class="weather">
+    <app-weather-info [root]="weatherInformation"></app-weather-info>
+  </section>
+  <section class="myInformation">
+    <app-more-info></app-more-info>
+  </section>
+  <div class="fixed bottom-0 left-0 w-full bg-gray-800 p-2 rounded-tl-lg rounded-tr-lg">
+    <div
+      class="text-gray-500 text-lg"
+      [class.hidden]="isInfoHidden"
+      [class.show]="isInfoShown"
+    >
+      <h3 class="font-bold mb-2">Project Information</h3>
+      <p>
+        This project was created using Angular and Tailwind CSS.
+        <br>
+        by
+        <a routerLink="/developer/Mbuelo/Maranda" class="text-yellow-500">Mbuelo</a>
+      </p>
+    </div>
+    <div
+      class="info-indicator"
+      [class.hidden]="!isInfoHidden"
+      (click)="toggleInfo()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="orange"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-6 w-6"
+      >
+        <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+      </svg>
+    </div>
+  </div>
+</div>

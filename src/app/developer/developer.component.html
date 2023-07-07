@@ -1,0 +1,66 @@
+<!-- HTML -->
+<div class="container bg-peach-200 mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
+  <div class="text-center">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-4">About Me</h2>
+    <div class="max-w-lg mx-auto">
+      <p class="text-gray-700 text-lg">Hello! I'm Mbuelo Maranda, the developer behind this project. I'm passionate about creating amazing web applications and delivering high-quality code.</p>
+      <p class="text-gray-700 text-lg mt-4">This project aims to provide a real-time weather app made using Angular/TypeScript and Tailwind CSS. It showcases my skills in building dynamic web applications and integrating external APIs to fetch and display accurate temperatures of cities worldwide.</p>
+    </div>
+    <div class="mt-8 flex items-center justify-center">
+      <img class="rounded-full h-24 w-24 object-cover" [src]="image" alt="Profile Image">
+    </div>
+    <div class="mt-8">
+      <h3 class="text-2xl font-bold text-indigo-600 mb-4">Contact Me</h3>
+      <ul class="list-disc list-inside max-w-md mx-auto">
+        <li class="text-gray-700 text-lg">Email: BrightMarsh.m@gmail.com</li>
+        <li class="text-gray-700 text-lg">Phone: 078 772 2573</li>
+        <li class="text-gray-700 text-lg">LinkedIn: <a href="https://za.linkedin.com/in/maranda-marvin-592a42233" class="text-yellow-500">Mbuelo Maranda</a></li>
+        <li class="text-gray-700 text-lg">GitHub: <a href="https://github.com/Marandadtc/" class="text-yellow-500">Marandadtc</a></li>
+      </ul>
+    </div>
+    <div class="fixed bottom-4 right-4">
+      <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full" (click)="openModal()">
+        <i class="fas fa-comment-alt text-xl"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Form Modal -->
+<div class="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex items-center justify-center hidden" #myModal>
+  <div class="bg-white rounded-lg p-6 max-w-xl">
+    <h2 class="text-2xl font-bold mb-4">Send a Message</h2>
+    
+    <form [formGroup]="form" (ngSubmit)="send()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="from_name">Name</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="from_name" type="text" formControlName="from_name" placeholder="From Name">
+      </div>
+    
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="from_email">Email</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="from_email" type="email" formControlName="from_email" placeholder="From Email">
+      </div>
+    
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="subject">Subject</label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="subject" type="text" formControlName="subject" placeholder="Subject">
+      </div>
+    
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
+        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" formControlName="message" placeholder="Message"></textarea>
+      </div>
+  
+      <!-- {{form.value | json}} -->
+    
+      <div class="flex justify-end">
+        <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" (click)="closeModal()">Close</button>
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded ml-4">
+          <ng-container *ngIf="!isLoading">Submit</ng-container>
+          <ng-container *ngIf="isLoading">Loading...</ng-container>
+        </button>
+      </div>
+  </form>
+  </div>
+</div>

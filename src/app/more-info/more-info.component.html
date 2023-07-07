@@ -1,20 +1,102 @@
-<div class="container bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-3xl font-bold mb-4 text-indigo-600">More Weather Information</h2>
-    <div class="info-card flex items-center justify-between border-b pb-2">
-      <div class="info-card__title text-lg font-semibold text-indigo-500">Wind Speed</div>
-      <div class="info-card__value text-lg">10 km/h</div>
-    </div>
-    <div class="info-card flex items-center justify-between border-b pb-2">
-      <div class="info-card__title text-lg font-semibold text-indigo-500">Humidity</div>
-      <div class="info-card__value text-lg">70%</div>
-    </div>
-    <div class="info-card flex items-center justify-between border-b pb-2">
-      <div class="info-card__title text-lg font-semibold text-indigo-500">Visibility</div>
-      <div class="info-card__value text-lg">10 km</div>
-    </div>
-    <div class="info-card flex items-center justify-between">
-      <div class="info-card__title text-lg font-semibold text-indigo-500">UV Index</div>
-      <div class="info-card__value text-lg">5</div>
+<div class="container bg-white rounded-lg shadow-lg p-6 h-screen overflow-y-auto">
+  <h2 class="text-3xl font-bold mb-4 text-indigo-600">More Weather Information</h2>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">City: {{ weatherData.name }}</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Coordinates</div>
+    <div class="info-card__value">Latitude: {{ weatherData.coord.lat }}, Longitude: {{ weatherData.coord.lon }}</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2" *ngFor="let weatherItem of weatherData.weather">
+    <div class="info-card__title">Weather ID: {{ weatherItem.id }}</div>
+    <div class="info-card__value">{{ weatherItem.description }}</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Base</div>
+    <div class="info-card__value">{{ weatherData.base }}</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Temperature</div>
+    <div class="info-card__value">{{ weatherData.main.temp }}&deg;C</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Feels Like</div>
+    <div class="info-card__value">{{ weatherData.main.feels_like }}&deg;C</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Min Temperature</div>
+    <div class="info-card__value">{{ weatherData.main.temp_min }}&deg;C</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Max Temperature</div>
+    <div class="info-card__value">{{ weatherData.main.temp_max }}&deg;C</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Pressure</div>
+    <div class="info-card__value">{{ weatherData.main.pressure }} hPa</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Humidity</div>
+    <div class="info-card__value">{{ weatherData.main.humidity }}%</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Visibility</div>
+    <div class="info-card__value">{{ weatherData.visibility }} meters</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between">
+    <div class="info-card__title">Wind Speed</div>
+    <div class="info-card__value">{{ (weatherData.wind.speed).toFixed(0) }} km/h</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between">
+    <div class="info-card__title">Rain (last hour)</div>
+    <div class="info-card__value">{{ weatherData.rain["1h"] }} mm</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between border-b pb-2">
+    <div class="info-card__title">Cloud Coverage</div>
+    <div class="info-card__value">{{ weatherData.clouds.all }}%</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between">
+    <div class="info-card__title">Timestamp</div>
+    <div class="info-card__value">{{ weatherData.dt | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+  </div>
+
+  <div class="info-card flex items-center justify-between">
+    <div class="info-card__title">System</div>
+    <div class="info-card__value">
+      Type: {{ weatherData.sys.type }}, ID: {{ weatherData.sys.id }}, Country: {{ weatherData.sys.country }},
+      Sunrise: {{ weatherData.sys.sunrise | date: 'yyyy-MM-dd HH:mm:ss' }},
+      Sunset: {{ weatherData.sys.sunset | date: 'yyyy-MM-dd HH:mm:ss' }}
     </div>
   </div>
-  
+
+  <div class="info-card flex items-center justify-between">
+    <div class="info-card__title">Timezone</div>
+    <div class="info-card__value">{{ weatherData.timezone }}</div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex justify-between mt-8">
+    <a href="/home" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Back to Home
+    </a>
+    <a href="/developer/Mbuelo/Maranda" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+      Developer
+    </a>
+  </div>
+
+</div>
